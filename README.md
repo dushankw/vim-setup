@@ -2,6 +2,10 @@
 
 Ansible tooling to configure vim and tmux, should work on any recent Fedora
 
+### Configuration
+
+See `host_vars/127.0.0.1`
+
 ### Usage
 
 0. `sudo dnf -y update`
@@ -10,4 +14,4 @@ Ansible tooling to configure vim and tmux, should work on any recent Fedora
 
 ### Post invocation
 
-Change GNOME Terminal font to 'DejaVu Sans Mono Book 18' and the colour scheme to 'Solarized Dark', then restart the Terminal Emulator
+Change GNOME Terminal font to `DejaVu Sans Mono Book 18` and the colour scheme to `Solarized Dark`, then restart the Terminal Emulator
