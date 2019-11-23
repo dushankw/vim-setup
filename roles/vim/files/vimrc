@@ -1,0 +1,143 @@
+" Powerline settings
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set t_Co=256
+set t_RV=
+
+" Editor settings
+colorscheme solarized
+filetype plugin indent on
+syntax enable
+set background=dark
+set guifont=Monospace\ 14
+set nocompatible
+set autoindent
+set autoread
+set history=100
+set whichwrap+=<,>,[,]
+set backspace=indent,eol,start
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set number
+set ruler
+set showmode
+set showcmd
+set tabpagemax=30
+set cursorline
+set wildmenu
+set lazyredraw
+set showmatch
+set belloff=all
+set listchars=tab:▸\ ,trail:•
+set list
+set viminfo="NONE"
+set encoding=utf-8
+set wrap!
+set title
+set secure
+set splitright
+set splitbelow
+set ttyfast
+set hidden
+set pastetoggle=<F4>
+map <F2> :tabp <CR>
+map <F3> :tabn <CR>
+
+" Persistent undo
+" set undofile
+" set undodir=/home/d/.vimundo
+
+" Default indentation
+set ts=4 sw=4 et si
+
+if has("autocmd")
+    " How should vim indent various files
+    autocmd FileType cpp        setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType c          setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType cs         setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType diff       setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType erlang     setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType eruby      setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType go         setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType haml       setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType html       setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType javascript setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType java       setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType nginx      setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType perl       setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType php        setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType python     setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType scala      setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType sh         setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType sql        setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType vb         setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType vim        setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType wsh        setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType xhtml      setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType xml        setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType yml        setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType json       setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType md         setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType markdown   setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType txt        setlocal sw=4 sts=4 ts=4 et
+    autocmd FileType template   setlocal sw=8 sts=0 ts=8
+
+    " OmniComplete for various languages
+    autocmd FileType python set omnifunc=python3complete#Complete
+    autocmd FileType ruby set omnifunc=rubycomplete#Complete
+
+    " IDE like OmniComplete behaviour
+    set completeopt=longest,menuone
+    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+    inoremap <expr> <M-,> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+    let g:SuperTabDefaultCompletionType = "context"
+
+    " Auto-close the OmniComplete pop-up after a competion
+    autocmd CompleteDone * pclose
+
+    " Don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+    autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+endif
+
+" No netrw history
+let g:netrw_dirhistmax = 0
+
+" Folding
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+" Higlight search results automatically
+:noremap / :set hlsearch<CR>/
+
+" Sudo write
+command! W w !sudo tee % > /dev/null
+
+" \sc invokes ShellCheck
+map <leader>sc :!clear && shellcheck %<CR>
+
+" NerdTree like functionality
+" map <c-n> <Esc>:Explore<CR>
+map <c-n> :NERDTreeToggle<CR>
+
+" Spell checking
+set complete+=kspell
+if has("autocmd")
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.txt set filetype=text
+    autocmd FileType markdown setlocal spell
+    autocmd FileType text setlocal spell
+    autocmd FileType gitcommit setlocal spell
+endif
+
+" Personal dictionary
+" set spellfile=$HOME/.vim-spell-en.utf-8.add

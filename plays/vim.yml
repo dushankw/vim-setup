@@ -1,0 +1,5 @@
+---
+
+- hosts: laptop
+  roles:
+    - { role: roles/vim, become: true, become_method: sudo }

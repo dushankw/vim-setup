@@ -1,0 +1,195 @@
+---
+  - name: install powerline bits and a better vim
+    dnf:
+      name:
+        - gvim
+        - powerline
+        - powerline-fonts
+        - vim-powerline
+        - vim-nerdtree
+        - fontconfig
+        - ShellCheck
+        - ctags
+        - global-ctags
+        - git
+        - tmux
+      state: latest
+
+  - name: make vim directory
+    file:
+      path: "{{ homedir }}/.vim"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
+  - name: make pack directory
+    file:
+      path: "{{ homedir }}/.vim/pack"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
+  - name: make my-plugins directory
+    file:
+      path: "{{ homedir }}/.vim/pack/my-plugins"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
+  - name: make start directory
+    file:
+      path: "{{ homedir }}/.vim/pack/my-plugins/start"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
+  - name: make colors directory
+    file:
+      path: "{{ homedir }}/.vim/colors"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
+  - name: make fonts directory
+    file:
+      path: "{{ homedir }}/.fonts"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
+  - name: make config directory
+    file:
+      path: "{{ homedir }}/.config"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
+  - name: make fontconfig directory
+    file:
+      path: "{{ homedir }}/.config/fontconfig"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
+  - name: make conf.d directory
+    file:
+      path: "{{ homedir }}/.config/fontconfig/conf.d"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
+  - name: copy powerline-symbols.conf
+    copy:
+        src: fonts/10-powerline-symbols.conf
+        dest: "{{ homedir }}/.config/fontconfig/conf.d/10-powerline-symbols.conf"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: 0600
+
+  - name: copy patched fonts
+    copy:
+        src: fonts/PowerlineSymbols.otf
+        dest: "{{ homedir }}/.fonts/PowerlineSymbols.otf"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: 0600
+    notify: reload fontcache
+
+  - name: copy vimrc
+    copy:
+        src: vimrc
+        dest: "{{ homedir }}/.vimrc"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: 0600
+
+  - name: copy tmux config
+    copy:
+        src: tmux.conf
+        dest: "{{ homedir }}/.tmux.conf"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: 0600
+
+  - name: copy solarized
+    copy:
+        src: colors/solarized.vim
+        dest: "{{ homedir }}/.vim/colors/solarized.vim"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: 0600
+
+  - name: gitgutter plugin
+    git:
+      repo: 'https://github.com/dushankw/vim-gitgutter.git'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-gitgutter"
+      version: master
+
+  - name: commentary plugin
+    git:
+      repo: 'https://github.com/dushankw/vim-commentary'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-commentary"
+      version: master
+
+  - name: surround plugin
+    git:
+      repo: 'https://github.com/dushankw/vim-surround'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-surround"
+      version: master
+
+  - name: indexed search plugin
+    git:
+      repo: 'https://github.com/dushankw/vim-indexed-search'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-indexed-search"
+      version: master
+
+  - name: super tab plugin
+    git:
+      repo: 'https://github.com/dushankw/supertab'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/supertab"
+      version: master
+
+  - name: AutoComplPop plugin
+    git:
+      repo: 'https://github.com/dushankw/AutoComplPop'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/AutoComplPop"
+      version: master
+
+  - name: vim json plugin
+    git:
+      repo: 'https://github.com/dushankw/vim-json'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-json"
+      version: master
+
+  - name: autopairs plugin (must load before endwise)
+    git:
+      repo: 'https://github.com/dushankw/auto-pairs'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/auto-pairs"
+      version: master
+
+  - name: gnupg.vim plugin
+    git:
+      repo: 'https://github.com/dushankw/vim-gnupg.git'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-gnupg"
+      version: master
+
+  - name: fix permissions on plugins
+    command: "chown -R {{ user }}:{{ user }} {{ homedir }}/.vim"
+    args:
+      warn: no
+
+# ruby syntax file from vim-ruby
+# https://github.com/dushankw/vim-endwise
+# https://github.com/vim-scripts/L9
+# https://github.com/vim-scripts/taglist.vim
+# https://github.com/tpope/vim-fugitive
+# https://github.com/tpope/vim-git
