@@ -9,7 +9,7 @@ See `host_vars/127.0.0.1`
 ### Usage
 
 0. `sudo dnf -y update`
-1. `sudo dnf -y install ansible make git python2-dnf libselinux-python`
+1. `sudo dnf -y install ansible make git python3-dnf python3-libselinux`
 2. `make`
 
 ### Post invocation
