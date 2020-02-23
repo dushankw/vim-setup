@@ -49,6 +49,16 @@ set pastetoggle=<F4>
 map <F2> :tabp <CR>
 map <F3> :tabn <CR>
 
+" Quickly toggle line numbers for copy/pasting
+function ToggleNum()
+    if &nu
+        :set nonu
+    else
+        :set nu
+    endif
+endfunction
+map <F5> :call ToggleNum() <CR>
+
 " Persistent undo
 " set undofile
 " set undodir=/home/d/.vimundo
