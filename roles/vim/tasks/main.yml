@@ -24,6 +24,14 @@
       group: "{{ user }}"
       mode: 0700
 
+  - name: make syntax directory
+    file:
+      path: "{{ homedir }}/.vim/syntax"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0700
+
   - name: make pack directory
     file:
       path: "{{ homedir }}/.vim/pack"
@@ -125,6 +133,14 @@
     copy:
         src: colors/solarized.vim
         dest: "{{ homedir }}/.vim/colors/solarized.vim"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: 0600
+
+  - name: copy django syntax file
+    copy:
+        src: syntax/django.vim
+        dest: "{{ homedir }}/.vim/syntax/django.vim"
         owner: "{{ user }}"
         group: "{{ user }}"
         mode: 0600
