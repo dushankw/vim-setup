@@ -1,6 +1,6 @@
 # Dushan's vim setup
 
-Ansible tooling to configure vim and tmux, should work on any recent Fedora
+Ansible tooling to configure vim and tmux, should work on any recent Fedora (will not work on other platforms due to leveraging Fedora upstream packages)
 
 ### Configuration
 
