@@ -7,6 +7,7 @@
         - powerline-fonts
         - vim-powerline
         - vim-nerdtree
+        - vim-jedi
         - fontconfig
         - ShellCheck
         - ctags

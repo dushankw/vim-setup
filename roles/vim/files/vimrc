@@ -2,6 +2,7 @@
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
+python3 import jedi
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
@@ -103,7 +104,7 @@ if has("autocmd")
     autocmd FileType make       setlocal sw=8 sts=0 ts=8 noet
 
     " OmniComplete for various languages
-    autocmd FileType python set omnifunc=python3complete#Complete
+    " autocmd FileType python set omnifunc=python3complete#Complete
     autocmd FileType ruby set omnifunc=rubycomplete#Complete
 
     " IDE like OmniComplete behaviour
