@@ -150,59 +150,63 @@
       repo: 'https://github.com/dushankw/vim-gitgutter.git'
       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-gitgutter"
       version: master
+    notify: fix permissions on plugins
 
   - name: commentary plugin
     git:
       repo: 'https://github.com/dushankw/vim-commentary'
       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-commentary"
       version: master
+    notify: fix permissions on plugins
 
   - name: surround plugin
     git:
       repo: 'https://github.com/dushankw/vim-surround'
       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-surround"
       version: master
+    notify: fix permissions on plugins
 
   - name: indexed search plugin
     git:
       repo: 'https://github.com/dushankw/vim-indexed-search'
       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-indexed-search"
       version: master
+    notify: fix permissions on plugins
 
   - name: super tab plugin
     git:
       repo: 'https://github.com/dushankw/supertab'
       dest: "{{ homedir }}/.vim/pack/my-plugins/start/supertab"
       version: master
+    notify: fix permissions on plugins
 
   - name: AutoComplPop plugin
     git:
       repo: 'https://github.com/dushankw/AutoComplPop'
       dest: "{{ homedir }}/.vim/pack/my-plugins/start/AutoComplPop"
       version: master
+    notify: fix permissions on plugins
 
   - name: vim json plugin
     git:
       repo: 'https://github.com/dushankw/vim-json'
       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-json"
       version: master
+    notify: fix permissions on plugins
 
   - name: autopairs plugin (must load before endwise)
     git:
       repo: 'https://github.com/dushankw/auto-pairs'
       dest: "{{ homedir }}/.vim/pack/my-plugins/start/auto-pairs"
       version: master
+    notify: fix permissions on plugins
 
   - name: gnupg.vim plugin
     git:
       repo: 'https://github.com/dushankw/vim-gnupg.git'
       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-gnupg"
       version: master
-
-  - name: fix permissions on plugins
-    command: "chown -R {{ user }}:{{ user }} {{ homedir }}/.vim"
-    args:
-      warn: no
+    notify: fix permissions on plugins
 
 # ruby syntax file from vim-ruby
 # https://github.com/dushankw/vim-endwise

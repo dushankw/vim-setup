@@ -1,3 +1,8 @@
 ---
   - name: reload fontcache
     command: fc-cache -vf ~/.fonts/
+
+  - name: fix permissions on plugins
+    command: "chown -R {{ user }}:{{ user }} {{ homedir }}/.vim"
+    args:
+      warn: no
