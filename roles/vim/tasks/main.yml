@@ -208,6 +208,20 @@
       version: master
     notify: fix permissions on plugins
 
+  - name: scratch.vim plugin
+    git:
+      repo: 'https://github.com/dushankw/scratch.vim.git'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/scratch.vim"
+      version: master
+    notify: fix permissions on plugins
+
+  - name: locate.vim plugin
+    git:
+      repo: 'https://github.com/dushankw/locate.vim.git'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/locate.vim"
+      version: master
+    notify: fix permissions on plugins
+
 # ruby syntax file from vim-ruby
 # https://github.com/dushankw/vim-endwise
 # https://github.com/vim-scripts/L9
