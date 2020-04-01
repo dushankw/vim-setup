@@ -137,6 +137,10 @@ command! W w !sudo tee % > /dev/null
 " \sc invokes ShellCheck
 map <leader>sc :!clear && shellcheck %<CR>
 
+" \Y and \P to yank and paste from/to system clipboard
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
+
 " NerdTree like functionality
 " map <c-n> <Esc>:Explore<CR>
 map <c-n> :NERDTreeToggle<CR>
