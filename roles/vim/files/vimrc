@@ -60,6 +60,16 @@ function ToggleNum()
 endfunction
 map <F5> :call ToggleNum() <CR>
 
+" Quickly toggle line wrapping
+function ToggleWrap()
+    if &wrap
+        :set wrap!
+    else
+        :set wrap
+    endif
+endfunction
+map <F6> :call ToggleWrap() <CR>
+
 " Persistent undo
 " set undofile
 " set undodir=/home/d/.vimundo
