@@ -157,6 +157,9 @@ map <c-n> :NERDTreeToggle<CR>
 
 " Spell checking
 set complete+=kspell
+set spelllang=en_au
+hi SpellBad cterm=underline
+hi SpellBad gui=undercurl
 if has("autocmd")
     autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.txt set filetype=text
