@@ -15,6 +15,7 @@
         - git
         - tmux
         - gron # make json grepable in line oriented manner
+        - discount # provides the 'markdown' program that will convert markdown > html
       state: latest
 
   - name: make vim directory
