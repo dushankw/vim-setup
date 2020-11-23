@@ -1,13 +1,9 @@
 ---
-  - name: install powerline bits and a better vim
+  - name: install the various packages we require
     dnf:
       name:
         - gvim
-        - powerline
-        - powerline-fonts
-        - vim-powerline
-        - vim-nerdtree
-        - vim-jedi
+        - vim-airline # TODO - fork to personal github and pull from there instead?
         - fontconfig
         - ShellCheck
         - ctags
@@ -210,13 +206,6 @@
       version: master
     notify: fix permissions on plugins
 
-  - name: scratch.vim plugin
-    git:
-      repo: 'https://github.com/dushankw/scratch.vim.git'
-      dest: "{{ homedir }}/.vim/pack/my-plugins/start/scratch.vim"
-      version: master
-    notify: fix permissions on plugins
-
   - name: locate.vim plugin
     git:
       repo: 'https://github.com/dushankw/locate.vim.git'
@@ -224,9 +213,15 @@
       version: master
     notify: fix permissions on plugins
 
+  - name: fugitive plugin
+    git:
+      repo: 'https://github.com/dushankw/vim-fugitive.git'
+      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-fugitive"
+      version: master
+    notify: fix permissions on plugins
+
 # ruby syntax file from vim-ruby
 # https://github.com/dushankw/vim-endwise
 # https://github.com/vim-scripts/L9
 # https://github.com/vim-scripts/taglist.vim
-# https://github.com/tpope/vim-fugitive
 # https://github.com/tpope/vim-git

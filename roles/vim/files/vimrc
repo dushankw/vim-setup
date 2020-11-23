@@ -1,11 +1,11 @@
-" Powerline settings
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
-python3 import jedi
-set laststatus=2 " Always display the statusline in all windows
+" Status and tab lines
 set showtabline=2 " Always display the tabline, even if there is only one tab
+set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:airline#extensions#tabline#enabled = 1 " Enable Airline tabline formatting as well as the statusline (default)
+let g:airline_powerline_fonts = 1 " Powerline symbols
+
+" Terminal settings
 set t_Co=256
 set t_RV=
 
@@ -115,7 +115,7 @@ if has("autocmd")
 
     " OmniComplete for various languages
     " autocmd FileType python set omnifunc=python3complete#Complete
-    autocmd FileType ruby set omnifunc=rubycomplete#Complete
+    " autocmd FileType ruby set omnifunc=rubycomplete#Complete
 
     " IDE like OmniComplete behaviour
     set completeopt=longest,menuone
@@ -131,9 +131,6 @@ if has("autocmd")
     autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
 endif
 
-" No netrw history
-let g:netrw_dirhistmax = 0
-
 " Folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
@@ -142,7 +139,7 @@ vnoremap <Space> zf
 :noremap / :set hlsearch<CR>/
 
 " Sudo write
-command! W w !sudo tee % > /dev/null
+" command! W w !sudo tee % > /dev/null
 
 " \sc invokes ShellCheck
 map <leader>sc :!clear && shellcheck %<CR>
@@ -152,8 +149,13 @@ noremap <Leader>Y "+y
 noremap <Leader>P "+p
 
 " NerdTree like functionality
-" map <c-n> <Esc>:Explore<CR>
-map <c-n> :NERDTreeToggle<CR>
+" map <c-n> :NERDTreeToggle<CR>
+let g:netrw_dirhistmax = 0 " no history
+let g:netrw_liststyle = 3 " use tree view
+let g:netrw_banner = 0 " remove pointless banner
+let g:netrw_browse_split = 3 " open files in new tab
+let g:netrw_winsize = 20 " set width to be a narrow split on left
+map <c-n> <Esc>:Lexplore<CR> " Ctrl + N to toggle
 
 " Spell checking
 set complete+=kspell
@@ -170,3 +172,33 @@ endif
 
 " Personal dictionary
 " set spellfile=$HOME/.vim-spell-en.utf-8.add
+
+" Attempt at custom status line, based largely around https://shapeshed.com/vim-statuslines/
+" Abandoned due to excessive complexity and insufficient time
+
+" ISSUES: does not show paste mode, strange terminal control chars, issue with modeline not always showing,
+" line/char count needs to be justified since when numbers increment they push rest of line around
+
+" function! GitBranch()
+"   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+" endfunction
+
+" function! StatuslineGit()
+"   let l:branchname = GitBranch()
+"   return strlen(l:branchname) > 0 ? l:branchname : ''
+" endfunction
+
+" set statusline=
+" set statusline+=%#PmenuSel#
+" set statusline+=\[%{StatuslineGit()}\]
+" set statusline+=%#LineNr#
+" set statusline+=\ \[%{mode()}\]
+" set statusline+=\ %f
+" set statusline+=%m
+" set statusline+=%=
+" set statusline+=%#CursorColumn#
+" set statusline+=\ %y
+" set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+" set statusline+=\[%{&fileformat}\]
+" set statusline+=\ %p%%
+" set statusline+=\ %l/%L:%c
