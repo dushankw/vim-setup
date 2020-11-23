@@ -118,6 +118,7 @@
         owner: "{{ user }}"
         group: "{{ user }}"
         mode: 0600
+    notify: cleanup viminfo
 
   - name: copy tmux config
     copy:

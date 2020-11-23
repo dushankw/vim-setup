@@ -6,3 +6,6 @@
     command: "chown -R {{ user }}:{{ user }} {{ homedir }}/.vim"
     args:
       warn: no
+
+  - name: cleanup viminfo
+    command: "rm {{ homedir }}/.viminfo | true"
