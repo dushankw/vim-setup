@@ -14,11 +14,7 @@ See `host_vars/127.0.0.1`
 
 ### Post invocation
 
-Change GNOME Terminal font to `DejaVu Sans Mono Book^ 18` and the colour scheme to `Solarized Dark`, then restart the Terminal Emulator
-
-```
-^ It seems in Fedora 32 this font has been renamed to 'DejaVu Sans Mono Regular'
-```
+Change GNOME Terminal font to `DejaVu Sans Mono 18` and the colour scheme to `Solarized Dark`, then restart the Terminal Emulator
 
 ### What it looks like
 
