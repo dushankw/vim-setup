@@ -8,4 +8,6 @@
       warn: no
 
   - name: cleanup viminfo
-    command: "rm {{ homedir }}/.viminfo | true"
+    command: "ln -sf /dev/null {{ homedir }}/.viminfo"
+    args:
+      warn: no
