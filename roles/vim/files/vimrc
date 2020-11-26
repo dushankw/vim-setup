@@ -157,6 +157,11 @@ let g:netrw_browse_split = 3 " open files in new tab
 let g:netrw_winsize = 20 " set width to be a narrow split on left
 map <c-n> <Esc>:Lexplore<CR> " Ctrl + N to toggle
 
+" Settings for gitgutter
+highlight clear SignColumn " clear background for gutter (signs column) so it will match whatever colour scheme is active for editor
+set updatetime=100 " fast refresh (100ms)
+let g:gitgutter_max_signs = -1 " show an unlimited number of signs (may slow down if looking at a massive diff)
+
 " Spell checking
 set complete+=kspell
 set spelllang=en_au
@@ -178,6 +183,7 @@ endif
 
 " ISSUES: does not show paste mode, strange terminal control chars, issue with modeline not always showing,
 " line/char count needs to be justified since when numbers increment they push rest of line around
+" we might find this useful to enrich the line too https://github.com/airblade/vim-gitgutter#status-line
 
 " function! GitBranch()
 "   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
