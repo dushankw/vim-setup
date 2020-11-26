@@ -4,6 +4,8 @@
       name:
         - gvim
         - vim-airline # TODO - fork to personal github and pull from there instead?
+        - vim-fugitive # TODO - finish auditing version forked to personal github and use it instead
+        - vim-gitgutter # TODO - pull latest upstream changes into version forked to personal github and use it instead
         - fontconfig
         - ShellCheck
         - ctags
@@ -144,13 +146,6 @@
         group: "{{ user }}"
         mode: 0600
 
-  - name: gitgutter plugin
-    git:
-      repo: 'https://github.com/dushankw/vim-gitgutter.git'
-      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-gitgutter"
-      version: master
-    notify: fix permissions on plugins
-
   - name: commentary plugin
     git:
       repo: 'https://github.com/dushankw/vim-commentary'
@@ -186,13 +181,6 @@
       version: master
     notify: fix permissions on plugins
 
-  - name: vim json plugin
-    git:
-      repo: 'https://github.com/dushankw/vim-json'
-      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-json"
-      version: master
-    notify: fix permissions on plugins
-
   - name: autopairs plugin (must load before endwise)
     git:
       repo: 'https://github.com/dushankw/auto-pairs'
@@ -200,26 +188,40 @@
       version: master
     notify: fix permissions on plugins
 
-  - name: gnupg.vim plugin
-    git:
-      repo: 'https://github.com/dushankw/vim-gnupg.git'
-      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-gnupg"
-      version: master
-    notify: fix permissions on plugins
+#   - name: gnupg.vim plugin
+#     git:
+#       repo: 'https://github.com/dushankw/vim-gnupg.git'
+#       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-gnupg"
+#       version: master
+#     notify: fix permissions on plugins
 
-  - name: locate.vim plugin
-    git:
-      repo: 'https://github.com/dushankw/locate.vim.git'
-      dest: "{{ homedir }}/.vim/pack/my-plugins/start/locate.vim"
-      version: master
-    notify: fix permissions on plugins
+#   - name: vim json plugin
+#     git:
+#       repo: 'https://github.com/dushankw/vim-json'
+#       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-json"
+#       version: master
+#     notify: fix permissions on plugins
 
-  - name: fugitive plugin
-    git:
-      repo: 'https://github.com/dushankw/vim-fugitive.git'
-      dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-fugitive"
-      version: master
-    notify: fix permissions on plugins
+#   - name: locate.vim plugin
+#     git:
+#       repo: 'https://github.com/dushankw/locate.vim.git'
+#       dest: "{{ homedir }}/.vim/pack/my-plugins/start/locate.vim"
+#       version: master
+#     notify: fix permissions on plugins
+
+#   - name: gitgutter plugin
+#     git:
+#       repo: 'https://github.com/dushankw/vim-gitgutter.git'
+#       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-gitgutter"
+#       version: master
+#     notify: fix permissions on plugins
+
+#   - name: fugitive plugin
+#     git:
+#       repo: 'https://github.com/dushankw/vim-fugitive.git'
+#       dest: "{{ homedir }}/.vim/pack/my-plugins/start/vim-fugitive"
+#       version: master
+#     notify: fix permissions on plugins
 
 # ruby syntax file from vim-ruby
 # https://github.com/dushankw/vim-endwise
