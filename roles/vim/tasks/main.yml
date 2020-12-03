@@ -14,6 +14,7 @@
         - tmux
         - gron # make json grepable in line oriented manner
         - discount # provides the 'markdown' program that will convert markdown > html
+        - words # needed for spell checking in vim
       state: latest
 
   - name: make vim directory
